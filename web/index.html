@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Servicios DRAI</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Montserrat|Cardo' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link href="node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body ng-app="myapp">
+
+
+
+
+<div ng-controller="ArticleCtrl as art">
+        <div class="m-app-loading" ng-animate-children>
+                
+                        <!--
+                            HACKY CODE WARNING: I'm putting Style block inside directive so that it
+                            will be removed from the DOM when we remove the directive container.
+                        -->
+                        <style type="text/css">
+                            div.m-app-loading {
+                                position: fixed ;
+                            }
+                            div.m-app-loading div.animated-container {
+                                background-color: #333333 ;
+                                bottom: 0px ;
+                                left: 0px ;
+                                opacity: 1.0 ;
+                                position: fixed ;
+                                right: 0px ;
+                                top: 0px ;
+                                z-index: 999999 ;
+                            }
+                            /* Used to initialize the ng-leave animation state. */
+                            div.m-app-loading div.animated-container.ng-leave {
+                                opacity: 1.0 ;
+                                transition: all linear 200ms ;
+                                    -webkit-transition: all linear 200ms ;
+                            }
+                            /* Used to set the end properties of the ng-leave animation state. */
+                            div.m-app-loading div.animated-container.ng-leave-active {
+                                opacity: 0 ;
+                            }
+                            div.m-app-loading div.messaging {
+                                color: #FFFFFF ;
+                                font-family: monospace ;
+                                left: 0px ;
+                                margin-top: -37px ;
+                                position: absolute ;
+                                right: 0px ;
+                                text-align: center ;
+                                top: 50% ;
+                            }
+                            div.m-app-loading h1 {
+                                font-size: 26px ;
+                                line-height: 35px ;
+                                margin: 0px 0px 20px 0px ;
+                            }
+                            div.m-app-loading p {
+                                font-size: 18px ;
+                                line-height: 14px ;
+                                margin: 0px 0px 0px 0px ;
+                            }
+                        </style>
+                
+                
+                        <!-- BEGIN: Actual animated container. -->
+                        <div class="animated-container">
+                
+                            <div class="messaging">
+                
+                                <h1>
+                                    App is Loading
+                                </h1>
+                
+                                <p>
+                                    Please stand by for your ticket to awesome-town!
+                                </p>
+                
+                            </div>
+                
+                        </div>
+                        <!-- END: Actual animated container. -->
+                
+                    </div>
+        <span>Currency: {{ art.text }}</span>
+        <span>Currency: {{ art.hola }}</span>
+</div> 
+
+
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
+    <script type="text/javascript" src="js/services/articleservice.js"></script>
+    <script type="text/javascript" src="js/controllers/article.js"></script>
+    <script type="text/javascript" src="node_modules/materialize-css/dist/js/materialize.min.js"></script>
+    <script type="text/javascript" src="node_modules/angular-animate/angular-animate.min.js"></script>
+</body>
+</html>
