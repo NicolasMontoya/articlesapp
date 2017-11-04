@@ -13,5 +13,8 @@
     "angular-route": "^1.6.6",
     "font-awesome": "^4.7.0",
     "materialize-css": "^0.100.2"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.0"
   }
 }
