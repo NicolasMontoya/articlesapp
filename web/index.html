@@ -80,21 +80,21 @@
       <br>
       <div class="row">
           <div class="input-field col s12">
-              <input placeholder="Enter title" id="first_name" type="text" class="validate">
+              <input ng-model="form.title" placeholder="Enter title" id="first_name" type="text" class="validate">
               <label for="first_name">Title</label>
             </div>
             <div class="input-field col s12">
-                <textarea placeholder="Enter message" id="textarea1" class="materialize-textarea" data-length="200"></textarea>
+                <textarea ng-model="form.message" placeholder="Enter message" id="textarea1" class="materialize-textarea" data-length="200"></textarea>
                 <label for="textarea1">Textarea</label>
             </div>
 
             <div class="col s12 file-field input-field">
                 <div class="btn">
                   <span>File</span>
-                  <input type="file" id="file">
+                  <input type="file" id="file" file-model="fileData">
                 </div>
                 <div class="file-path-wrapper">
-                  <input placeholder="Dont't selected file." class="file-path validate" type="text">
+                  <input placeholder="Max file size 100Kb and only photos in jpg,gif or png" class="file-path validate" type="text">
                 </div>
               </div>
             
@@ -103,7 +103,7 @@
         </div>
         <div class="modal-footer">
             <a class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
-          <a href="#!" class="modal-action waves-effect waves-green btn-flat btn teal darksen-2" style="color:white;" ng-click="art.save()">Save</a>
+          <a href="#!" class="modal-action waves-effect waves-green btn-flat btn teal darksen-2" style="color:white;" ng-click="art.save(form)">Save</a>
         </div>
     </div>
 
@@ -114,8 +114,9 @@
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="node_modules/materialize-css/dist/js/materialize.min.js"></script>
     <script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
-    <script type="text/javascript" src="js/services/articleservice.js"></script>
     <script type="text/javascript" src="js/controllers/article.js"></script>
+    <script type="text/javascript" src="js/services/articleservice.js"></script>
+    <script type="text/javascript" src="js/directives/directive.js"></script>
     <script type="text/javascript" src="node_modules/angular-animate/angular-animate.min.js"></script>
     <script>
       $(".button-collapse").sideNav();

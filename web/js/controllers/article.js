@@ -2,20 +2,22 @@ var app=angular.module("myapp",['ngAnimate']);
 
 
 
-app.controller('ArticleCtrl',function($scope,$http){
+app.controller('ArticleCtrl',function($scope,$http,articleService){
     
     var ctrl = this;
     ctrl.text = "Hola";
     ctrl.hola = "ss";
-    ctrl.save = function(){
+    ctrl.save = function(form){
         var fd = new FormData();
-        var files = document.getElementById('file').files[0];
-        fd.append('file',files);
-        $http({
-            method: 'GET',
-            url: 'https://www.example.com/api/v1/page',
-            data: {test:'prueba'}
-         });
+        var file = $scope.fileData;
+        fd.append('userfile',file);
+        fd.append('title',form.title);
+        fd.append('message',form.message);
+        articleService.saveArticle(fd).then(function(data){
+            console.log(data);
+        },function(err){
+            console.log(err);
+        });
         
     };
     ctrl.start = function(){
@@ -27,7 +29,7 @@ app.controller('ArticleCtrl',function($scope,$http){
             console.log(ctrl.loading);
             var element = document.getElementById("loading");
             element.parentNode.removeChild(element);
-        },100); 
+        },1000); 
     };
 
     $scope.readyCallback = function() {
