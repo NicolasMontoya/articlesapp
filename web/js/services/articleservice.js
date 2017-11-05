@@ -61,12 +61,13 @@ app.service('articleService',function($http,$q){
         },
     removeArticle: function(id){
             var defered = $q.defer();
-            var promise = defered.promise();
+            var promise = defered.promise;
             $http.post('/articlesapp/app/article/remove', {'id':id}).then(function(res){
                 defered.resolve(res.data)},
                 function(err){
                     defered.reject(err);
                 });
+            return promise;
     }
     }
 });

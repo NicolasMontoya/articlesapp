@@ -55,6 +55,7 @@ $route['article/get'] = 'article/getAll';
 $route['article/get/(:num)'] = 'article/getById/$1';
 $route['article/save'] = 'article/saveArticle';
 $route['article/update'] = 'article/updateArticle';
+$route['article/remove'] = 'article/removeArticle';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

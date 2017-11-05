@@ -130,7 +130,16 @@ app.controller('ArticleCtrl',function($scope,$http,articleService){
     };
 
     ctrl.remove = function(){
+        articleService.removeArticle(ctrl.actualid).then(function(res){
+            if(res.status != "Error"){
+                ctrl.articles.splice(ctrl.actualIndex,1);
+                $("#modal2").modal('close');
+            }else{
 
+            }
+        },function(){
+
+        });
     };
 
 });

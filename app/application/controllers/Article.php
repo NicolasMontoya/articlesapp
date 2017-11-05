@@ -32,7 +32,7 @@ class Article extends CI_Controller {
 			if($title != null && $message != null && $title != '' && $message != ''){
 				if ( ! $this->upload->do_upload('userfile'))
 				{
-								$error = array('error' => $this->upload->display_errors());
+								$error = array('status' => 'Error','error' => $this->upload->display_errors());
 								print json_encode($error);
 				}
 				else
@@ -43,7 +43,7 @@ class Article extends CI_Controller {
 				}
 			}
 			else{
-				$error = array('error' => "Some data empty");
+				$error = array('status'=>'Error','error' => "Some data empty");
 				print json_encode($error);
 			}
 			       
@@ -80,10 +80,22 @@ class Article extends CI_Controller {
 				$response = $this->model->updateArticle($id,$title,$message,$exist->img,false);
 				print json_encode($response);
 			}
+		}else{
+			$error = array('status'=>'Error','error' => "Some data empty");
+			print json_encode($error);
 		}	
 		
     }
     public function removeArticle(){
-
+		$postdata = file_get_contents("php://input");
+		$request = json_decode($postdata);
+		$id = $request->id;
+		if(isset($id)){
+			$response = $this->model->removeArticle($id);
+			print json_encode($response);
+		}else{
+			$error = array('status'=>'Error','error' => "Some data empty");
+			print json_encode($error);
+		}
     }
 }
