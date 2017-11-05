@@ -13,7 +13,7 @@ class Article_Model extends CI_Model {
     public function getById($id){
         $this->db->where('id',$id);
         $query = $this->db->get('article');
-        $data = $query->result();
+        $data = $query->row();
         return $data;
     }
     public function saveArticle($title, $message, $img){
@@ -35,8 +35,24 @@ class Article_Model extends CI_Model {
     public function removeArticle($id){
 
     }
-    public function updateArticle($id){
-
+    public function updateArticle($id, $title, $message, $img,$state){
+		if($state == false){
+			$data = array('title' => $title,'message' => $message);
+		}
+		else{
+			$data = array('title' => $title,'message' => $message, 'img' => $img);
+		}
+		$this->db->where('id',$id);
+		$this->db->update('article', $data);
+		if($this->db->affected_rows() > 0){
+			$data['id'] = $id;
+			$data['img'] = $img;
+			$response = array("status" => "Success",'data' => $data);
+		}
+		else{
+			$response = array("status" => "Error", "data" => "No inserted register");
+		}
+		return $response;
     }
     
 }

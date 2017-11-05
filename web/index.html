@@ -36,37 +36,41 @@
             </div>
         </div>
       <div class="content" ng-show="art.loading">
-        <nav>
-          <div class="nav-wrapper  teal darken-2">
-            <a href="#" class="brand-logo right"><img src="images/tres.gif" alt=""></a>
-            <ul id="slide-out" class="side-nav">
+        
+          <div class="navbar-fixed">
+            <nav>
+              <div class="nav-wrapper  teal darken-2">
+                <a class="brand-logo right"><img src="images/tres.gif" alt=""></a>
+                
+                <ul class="left hide-on-med-and-down">
+                  <li><a href="#!">Articles</a></li>
+                  <li><a href="#!">Other things</a></li>
+                </ul>
+                <a data-activates="slide-out" class="button-collapse" ><i class="material-icons">menu</i></a>
+                <button style="margin:10px; color:black" class="waves-effect waves-light btn  teal lighten-5" ng-click="art.showSaveModal()">New article</button>
+            
+              </div>
+          </nav>
+          </div>
+          <ul id="slide-out" class="side-nav">
               <li><a href="#!">First Sidebar Link</a></li>
               <li><a href="#!">Second Sidebar Link</a></li>
-            </ul>
-            <ul class="left hide-on-med-and-down">
-              <li><a href="#!">Articles</a></li>
-              <li><a href="#!">Other things</a></li>
-
-            </ul>
-            <a href="#" data-activates="slide-out" class="button-collapse" ><i class="material-icons">menu</i></a>
-        
-          </div>
-        </nav>
+          </ul>
+        <br>
         <div class="row">
             <div class="col s12">
-              <button data-target="modal1" style="margin:10px;" class="modal-trigger waves-effect waves-light btn  teal darken-2">New article</button>
-              <div class="card medium">
+              
+              <div class="card medium" ng-repeat="article in art.articles">
                 <div class="card-image">
-                  <img src="images/office.jpg">
-                  <span class="card-title">Card Title</span>
+                  <img ng-src="/articlesapp/app/{{article.img}}">
+                  <span class="card-title">{{article.title}}</span>
                 </div>
                 <div class="card-content">
-                  <p>I am a very simple card. I am good at containing small bits of information.
-                  I am convenient because I require little markup to use effectively.</p>
+                  <p>{{article.message}}</p>
                 </div>
                 <div class="card-action">
-                  <a href="#">edit</a>
-                  <a href="#">delete</a>
+                  <a class="waves-effect waves-light" ng-click="art.showEditModal(article.id,$index)">edit</a>
+                  <a>delete</a>
                 </div>
 
               </div>
@@ -80,11 +84,11 @@
       <br>
       <div class="row">
           <div class="input-field col s12">
-              <input ng-model="form.title" placeholder="Enter title" id="first_name" type="text" class="validate">
+              <input ng-model="form.title" placeholder="Enter title" id="title_art" type="text" class="validate">
               <label for="first_name">Title</label>
             </div>
             <div class="input-field col s12">
-                <textarea ng-model="form.message" placeholder="Enter message" id="textarea1" class="materialize-textarea" data-length="200"></textarea>
+                <textarea ng-model="form.message" placeholder="Enter message" id="message_art" class="materialize-textarea" data-length="240"></textarea>
                 <label for="textarea1">Textarea</label>
             </div>
 
@@ -94,17 +98,30 @@
                   <input type="file" id="file" file-model="fileData">
                 </div>
                 <div class="file-path-wrapper">
-                  <input placeholder="Max file size 100Kb and only photos in jpg,gif or png" class="file-path validate" type="text">
+                  <input id="textFilePath" placeholder="Max file size 100Kb and only photos in jpg,gif or png" class="file-path validate" type="text">
                 </div>
               </div>
-            
+            <div class="col s12 red lighten-3" style="border-radius:10px; " ng-show="art.paramError.status">
+              <p>{{art.paramError.error}}</p>
+            </div>
 
       </div>
         </div>
-        <div class="modal-footer">
+        <div class="modal-footer" ng-cloak>
             <a class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
-          <a href="#!" class="modal-action waves-effect waves-green btn-flat btn teal darksen-2" style="color:white;" ng-click="art.save(form)">Save</a>
+            <a class="modal-action waves-effect waves-green btn-flat btn teal darksen-2" style="color:white;" ng-click="art.edit(form)" ng-show="art.opens" >Update</a>
+            <a class="modal-action waves-effect waves-green btn-flat btn teal darksen-2" style="color:white;" ng-click="art.save(form)" ng-hide="art.opens" >Save</a>
         </div>
+    </div>
+
+    <div id="modal2" class="modal">
+      <div class="modal-content">
+          <h4>New Article Form</h4>
+      </div>
+      <div class="modal-footer">
+          <a class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+          <a class="modal-action waves-effect waves-green btn-flat btn teal darksen-2" style="color:white;" ng-click="art.edit()">Save</a>
+      </div>
     </div>
 
 </div> 

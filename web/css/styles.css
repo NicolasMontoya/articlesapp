@@ -52,3 +52,6 @@ div.m-app-loading p {
 		
 	}
  }
+
+
+ .modal { max-height: 100% !important ; overflow-y: hidden !important ;}

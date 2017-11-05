@@ -49,7 +49,39 @@ class Article extends CI_Controller {
 			       
     }
     public function updateArticle(){
-
+		$id = $_POST['id'];
+		$title = $_POST['title'];
+		$message = $_POST['message'];
+		$code = uniqid('img_');
+		$exist = $this->model->getById($id);
+		if($exist != array() && $exist != '' && $exist != null){
+			if(isset($_FILES['userfile']))
+			{
+				$config['upload_path']          = './uploads/';
+				$config['allowed_types']        = 'gif|jpg|png';
+				$config['max_size']             = 100;
+				$config['max_width']            = 2000;
+				$config['max_height']           = 2000;
+				$config['file_name']			= $code;
+				$this->load->library('upload', $config);
+				if ( ! $this->upload->do_upload('userfile'))
+				{
+								$error = array('status'=>'Error','error' => $this->upload->display_errors());
+								print json_encode($error);
+				}
+				else
+				{
+								unlink($exist->img);
+								$img = 'uploads/'.$this->upload->data('file_name');
+								$response = $this->model->updateArticle($id,$title,$message,$img,true);
+								print json_encode($response);
+				}
+			}else{
+				$response = $this->model->updateArticle($id,$title,$message,$exist->img,false);
+				print json_encode($response);
+			}
+		}	
+		
     }
     public function removeArticle(){
 
