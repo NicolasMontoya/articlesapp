@@ -1,5 +1,6 @@
 var app=angular.module("myapp");
 
+// Directive for upload file
 app.directive('fileModel', ['$parse', function ($parse) {
     return {
            restrict: 'A',

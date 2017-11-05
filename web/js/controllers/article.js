@@ -51,6 +51,11 @@ app.controller('ArticleCtrl',function($scope,$http,articleService){
         });
         $('#modal1').modal('open');     
     };
+    ctrl.showRemoveModal = function(id, index){
+        ctrl.actualid = id;
+        ctrl.actualIndex = index;
+        $('#modal2').modal('open'); 
+    };
 
     // Basic CRUD
     ctrl.save = function(form){
@@ -122,6 +127,10 @@ app.controller('ArticleCtrl',function($scope,$http,articleService){
         }else{
             ctrl.paramError = {status:true,error:'Enter all params'};
         }
+    };
+
+    ctrl.remove = function(){
+
     };
 
 });

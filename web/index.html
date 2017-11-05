@@ -70,7 +70,7 @@
                 </div>
                 <div class="card-action">
                   <a class="waves-effect waves-light" ng-click="art.showEditModal(article.id,$index)">edit</a>
-                  <a>delete</a>
+                  <a class="waves-effect waves-light" ng-click="art.showRemoveModal(article.id,$index)">delete</a>
                 </div>
 
               </div>
@@ -116,11 +116,15 @@
 
     <div id="modal2" class="modal">
       <div class="modal-content">
-          <h4>New Article Form</h4>
+          <h4>Delete register</h4>
+          <br>
+          <div class="row">
+            <p style="font-size:20px;">Are you sure ?</p>
+          </div>
       </div>
       <div class="modal-footer">
           <a class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
-          <a class="modal-action waves-effect waves-green btn-flat btn teal darksen-2" style="color:white;" ng-click="art.edit()">Save</a>
+          <a class="modal-action waves-effect waves-green btn-flat btn teal darksen-2" style="color:white;" ng-click="art.remove()">Yes</a>
       </div>
     </div>
 
