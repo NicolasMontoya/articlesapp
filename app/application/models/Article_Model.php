@@ -33,10 +33,11 @@ class Article_Model extends CI_Model {
 		return $response;
     }
     public function removeArticle($id){
+		$data = $this->getById($id);
 		$this->db->where('id',$id);
 		$this->db->delete('article');
 		if($this->db->affected_rows() > 0){
-			$response = array("status" => "Success",'data' => $id);
+			$response = array("status" => "Success",'data' => $data);
 		}
 		else{
 			$response = array("status" => "Error", "data" => "No removed register");

@@ -5,7 +5,7 @@ app.service('articleService',function($http,$q){
         get : function(){
             var defered = $q.defer();
             var promise = defered.promise;
-            $http.get('/articlesapp/app/article/get').then(function(res){
+            $http.get('/phpworkshopnicolasmontoya/app/article/get').then(function(res){
                 defered.resolve(res.data);
             },function(err){
                 defered.reject(err);
@@ -15,7 +15,7 @@ app.service('articleService',function($http,$q){
         getByid : function(id){
             var defered = $q.defer();
             var promise = defered.promise;
-            $http.get('/articlesapp/app/article/get/'+id).then(function(res){
+            $http.get('/phpworkshopnicolasmontoya/app/article/get/'+id).then(function(res){
                 defered.resolve(res.data);
             },function(err){
                 defered.reject(err);
@@ -25,7 +25,7 @@ app.service('articleService',function($http,$q){
         saveArticle : function(form){
             var defered = $q.defer();
             var promise = defered.promise;
-            $http.post('/articlesapp/app/article/save', form, {
+            $http.post('/phpworkshopnicolasmontoya/app/article/save', form, {
                 withCredentials: false,
                 headers: {
                         'Content-Type': undefined
@@ -44,7 +44,7 @@ app.service('articleService',function($http,$q){
         updateArticle : function(form){
             var defered = $q.defer();
             var promise = defered.promise;
-            $http.post('/articlesapp/app/article/update', form, {
+            $http.post('/phpworkshopnicolasmontoya/app/article/update', form, {
                 withCredentials: false,
                 headers: {
                         'Content-Type': undefined
@@ -62,7 +62,7 @@ app.service('articleService',function($http,$q){
     removeArticle: function(id){
             var defered = $q.defer();
             var promise = defered.promise;
-            $http.post('/articlesapp/app/article/remove', {'id':id}).then(function(res){
+            $http.post('/phpworkshopnicolasmontoya/app/article/remove', {'id':id}).then(function(res){
                 defered.resolve(res.data)},
                 function(err){
                     defered.reject(err);

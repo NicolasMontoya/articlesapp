@@ -92,6 +92,7 @@ class Article extends CI_Controller {
 		$id = $request->id;
 		if(isset($id)){
 			$response = $this->model->removeArticle($id);
+			unlink($response['data']->img);
 			print json_encode($response);
 		}else{
 			$error = array('status'=>'Error','error' => "Some data empty");

@@ -3,6 +3,7 @@
 <head>
 	<title>Article app</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!-- CSS Dependencies -->
     <link href='http://fonts.googleapis.com/css?family=Montserrat|Cardo' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/styles.css">
@@ -14,9 +15,10 @@
 <body ng-app="myapp">
 
 
-
+<!-- Main Block - Controller app -->
 
 <div ng-controller="ArticleCtrl as art" ng-init="art.start()">
+  <!-- Loading screen -->
        <div id="loading" class="m-app-loading">    
             <div class="animated-container"> 
                 <div class="messaging">
@@ -35,6 +37,7 @@
                 </div>
             </div>
         </div>
+      <!-- Content app, cards and buttons -->
       <div class="content" ng-show="art.loading">
         
           <div class="navbar-fixed">
@@ -53,8 +56,8 @@
           </nav>
           </div>
           <ul id="slide-out" class="side-nav">
-              <li><a href="#!">First Sidebar Link</a></li>
-              <li><a href="#!">Second Sidebar Link</a></li>
+              <li><a href="#!">Articles</a></li>
+              <li><a href="#!">Other things</a></li>
           </ul>
         <br>
         <div class="row">
@@ -62,8 +65,8 @@
               
               <div class="card medium" ng-repeat="article in art.articles">
                 <div class="card-image">
-                  <img ng-src="/articlesapp/app/{{article.img}}">
-                  <span class="card-title">{{article.title}}</span>
+                  <img ng-src="/phpworkshopnicolasmontoya/app/{{article.img}}">
+                  <span class="card-title" style="background-color:rgba(62, 64, 58, 0.67); border-radius:10px; margin:10px;">{{article.title}}</span>
                 </div>
                 <div class="card-content">
                   <p>{{article.message}}</p>
@@ -77,10 +80,10 @@
             </div>
           </div>
     </div>
-
+    <!-- Modals for save, update and delete -->
     <div id="modal1" class="modal">
       <div class="modal-content">
-      <h4>New Article Form</h4>
+      <h4>Article Form</h4>
       <br>
       <div class="row">
           <div class="input-field col s12">
@@ -131,7 +134,7 @@
 </div> 
 
 
-
+<!-- Javascript dependencies -->
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="node_modules/materialize-css/dist/js/materialize.min.js"></script>
     <script type="text/javascript" src="node_modules/angular/angular.min.js"></script>

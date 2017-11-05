@@ -25,11 +25,12 @@ app.controller('ArticleCtrl',function($scope,$http,articleService){
             console.log(ctrl.loading);
             var element = document.getElementById("loading");
             element.parentNode.removeChild(element);
-        },1000); 
+        },2000); 
     };
 
     // Helpers to functionality
     ctrl.showSaveModal = function(act){
+            $scope.fileData = undefined;
             ctrl.opens = false;
             ctrl.paramError = {status:false,error:''};
             $scope.form = {title:'',message:''};
@@ -37,7 +38,8 @@ app.controller('ArticleCtrl',function($scope,$http,articleService){
             $('#textFilePath').attr("placeholder", "Max file size 100Kb and only photos in jpg,gif or png"); 
             $('#modal1').modal('open');  
     };
-    ctrl.showEditModal = function(id, index){     
+    ctrl.showEditModal = function(id, index){   
+        $scope.fileData = undefined;  
         ctrl.opens = true;
         ctrl.paramError = {status:false,error:''};
         ctrl.actualid = id;
@@ -59,6 +61,7 @@ app.controller('ArticleCtrl',function($scope,$http,articleService){
 
     // Basic CRUD
     ctrl.save = function(form){
+        
         var fd = new FormData();
         var file = $scope.fileData;
         if(form.title != undefined && form.message != undefined && form.message != '' && form.title != '' && file != undefined){
@@ -66,11 +69,12 @@ app.controller('ArticleCtrl',function($scope,$http,articleService){
                 fd.append('userfile',file);
                 fd.append('title',form.title);
                 fd.append('message',form.message);
-                articleService.saveArticle(fd).then(function(data){
+                articleService.saveArticle(fd).then(function(res){
+                    console.log(res);
                     if(res.status == "Error"){
                         ctrl.paramError = {status:true,error:'Save failed, contact admin'};
                     }else{
-                        ctrl.articles[ctrl.actualIndex] = res.data;
+                        ctrl.articles.push(res.data);
                         $('#modal1').modal('close'); 
                     }
                 },function(err){
